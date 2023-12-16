@@ -1,5 +1,9 @@
 //Parcel.java
 
 public class Parcel {
-    private  int parcelId; 
+
+   private int parcelID;
+   private int senderID;
+   private int receiverID;
+   
 }
