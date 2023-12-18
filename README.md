@@ -1,2 +1,2 @@
-# po-box-system
+# PO-box-system
 case study repository
