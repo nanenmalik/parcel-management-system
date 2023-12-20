@@ -12,4 +12,14 @@ public class Parcel {
     public int getHouseNumber() {
         return houseNumber;
     }
+
+    public String getRecipientName() {
+        return recipientName;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    
 }
