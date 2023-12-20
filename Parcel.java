@@ -1,28 +1,25 @@
-//Parcel.java
-import java.util.Date;
-
 public class Parcel {
+    private String recipientName;
+    private int houseNumber;
+    private String content;
 
-   private int houseNumber;
-   private String itemName;
-   private Date storageDate;
+    public Parcel(String recipientName, int houseNumber, String content) {
+        this.recipientName = recipientName;
+        this.houseNumber = houseNumber;
+        this.content = content;
+    }
 
-   public Parcel(int houseNumber, String itemName) {
-       this.houseNumber = houseNumber;
-       this.itemName = itemName;
-       this.storageDate = new Date();
-   }
+    public int getHouseNumber() {
+        return houseNumber;
+    }
 
-   public int getHouseNumber() {
-       return houseNumber;
-   }
+    public String getRecipientName() {
+        return recipientName;
+    }
 
-   public String getItemName() {
-       return itemName;
-   }
+    public String getContent() {
+        return content;
+    }
 
-   public Date getStorageDate() {
-       return storageDate;
-   } 
-   
+    
 }
