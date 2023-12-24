@@ -24,10 +24,7 @@ public class Parcel {
         return recipientName;
     }
 
-    public String getContent() {
-        return content;
-    }
-
+   
     public boolean isExpired() {
         LocalDate currentDate = LocalDate.now();
         long daysDifference = ChronoUnit.DAYS.between(storedDate, currentDate);
