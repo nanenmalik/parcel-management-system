@@ -1,28 +1,57 @@
 //Parcel.java
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Parcel {
+    private String recipientName;
+    private int houseNumber;
+    private String content;
+    private LocalDate storedDate;
+    private double parcelCost;
 
-   private int houseNumber;
-   private String itemName;
-   private Date storageDate;
+    public Parcel(String recipientName, int houseNumber, String content) {
+        this.recipientName = recipientName;
+        this.houseNumber = houseNumber;
+        this.content = content;
+        this.storedDate = LocalDate.now();
+        this.parcelCost = 0;
+    }
 
-   public Parcel(int houseNumber, String itemName) {
-       this.houseNumber = houseNumber;
-       this.itemName = itemName;
-       this.storageDate = new Date();
-   }
+    public int getHouseNumber() {
+        return houseNumber;
+    }
 
-   public int getHouseNumber() {
-       return houseNumber;
-   }
+    public String getRecipientName() {
+        return recipientName;
+    }
 
-   public String getItemName() {
-       return itemName;
-   }
+    public String getContent() {
+        return content;
+    }
 
-   public Date getStorageDate() {
-       return storageDate;
-   } 
+    public boolean isExpired() {
+        LocalDate currentDate = LocalDate.now();
+        long daysDifference = ChronoUnit.DAYS.between(storedDate, currentDate);
+        return daysDifference > 2;
+    }
+    
+    public void handleExtendTime(int days) {
+        storedDate = storedDate.plusDays(days);
+        parcelCost += days * 3;
+    }
+    
+    public void handleReturn() {
+        storedDate = LocalDate.now();
+    }
+       
+    public double getParcelCost() {
+        return parcelCost;
+    }
+       
+
+    @Override
+    public String toString() {
+        return "Parcel for " + recipientName + " at " + houseNumber + " containing " + content;
+    }
    
 }
