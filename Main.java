@@ -9,6 +9,13 @@ public class Main {
         int[] houseNumbers = new int[30]; // 1D array to store house numbers
         Parcel[][] poBoxes = new Parcel[30][3]; // 2D array to store Parcel objects
 
+        int count = 0;
+        int option = 0;
+
+        // load data from file if it already exists
+        ParcelStorage.loadDataFromFile(recipientNames, poBoxes,  houseNumbers);         //call from PropertySystem file
+        System.out.println("Welcome to Property Management\n");
+
         // Taking user input for creating a Parcel object
         System.out.println("Enter recipient name:");
         String inputRecipientName = scanner.nextLine();
