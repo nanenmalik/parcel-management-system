@@ -2,8 +2,10 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ParcelStorage {
@@ -44,4 +46,26 @@ public class ParcelStorage {
             System.out.println("File Succesfully created.");
         }
     }
+
+    // Method to save data to file
+    public static void savingDataToFile(String[] recipientNames, String[][] poBox, String[] houseNumbers) throws IOException {
+
+        File file = new File("data.txt");
+        PrintWriter en = new PrintWriter(new FileWriter(file));
+    
+        // Write data into the file named 'data.txt'
+        for (int i = 0; i < houseNumbers.length; i++) {
+            // Check if any of the required arrays or elements are null
+            if (recipientNames[i] == null || poBox[i] == null || poBox[i][0] == null || houseNumbers[i] == null) {
+                continue;
+            }
+    
+            // Write data to the file
+            en.write(houseNumbers[i] + "," + recipientNames[i] + "," + poBox[i][0] + "," + poBox[i][1] + "," + poBox[i][2]);
+            en.println();
+        }
+    
+        en.close();
+    }
+    
 }
