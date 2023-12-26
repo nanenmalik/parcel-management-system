@@ -11,36 +11,36 @@ import java.util.Scanner;
 public class ParcelStorage {
 
     String [][] poBox = {
-        {"Recipient1", "5", "No Parcel"}, 
-        {"Recipient2", "5", "No Parcel"},
-        {"Recipient3", "5", "No Parcel"},
-        {"Recipient4", "5", "No Parcel"},
-        {"Recipient5", "5", "No Parcel"},
-        {"Recipient6", "5", "No Parcel"},
-        {"Recipient7", "5", "No Parcel"},
-        {"Recipient8", "5", "No Parcel"},
-        {"Recipient9", "5", "No Parcel"},
-        {"Recipient10", "5", "No Parcel"},
-        {"Recipient11", "5", "No Parcel"},
-        {"Recipient12", "5", "No Parcel"},
-        {"Recipient13", "5", "No Parcel"},
-        {"Recipient14", "5", "No Parcel"},
-        {"Recipient15", "5", "No Parcel"},
-        {"Recipient16", "5", "No Parcel"},
-        {"Recipient17", "5", "No Parcel"},
-        {"Recipient18", "5", "No Parcel"},
-        {"Recipient19", "5", "No Parcel"},
-        {"Recipient20", "5", "No Parcel"},
-        {"Recipient21", "5", "No Parcel"},
-        {"Recipient22", "5", "No Parcel"},
-        {"Recipient23", "5", "No Parcel"},
-        {"Recipient24", "5", "No Parcel"},
-        {"Recipient25", "5", "No Parcel"},
-        {"Recipient26", "5", "No Parcel"},
-        {"Recipient27", "5", "No Parcel"},
-        {"Recipient28", "5", "No Parcel"},
-        {"Recipient29", "5", "No Parcel"},
-        {"Recipient30", "5", "No Parcel"}
+        {"Recipient1", "5", "None","0", "No Parcel"}, 
+        {"Recipient2", "5", "None","0", "No Parcel"},
+        {"Recipient3", "5", "None","0", "No Parcel"},
+        {"Recipient4", "5", "None","0", "No Parcel"},
+        {"Recipient5", "5", "None","0", "No Parcel"},
+        {"Recipient6", "5", "None","0", "No Parcel"},
+        {"Recipient7", "5", "None","0", "No Parcel"},
+        {"Recipient8", "5", "None","0", "No Parcel"},
+        {"Recipient9", "5", "None","0", "No Parcel"},
+        {"Recipient10", "5", "None","0", "No Parcel"},
+        {"Recipient11", "5", "None","0", "No Parcel"},
+        {"Recipient12", "5", "None","0", "No Parcel"},
+        {"Recipient13", "5", "None","0", "No Parcel"},
+        {"Recipient14", "5", "None","0", "No Parcel"},
+        {"Recipient15", "5", "None","0", "No Parcel"},
+        {"Recipient16", "5", "None","0", "No Parcel"},
+        {"Recipient17", "5", "None","0", "No Parcel"},
+        {"Recipient18", "5", "None","0", "No Parcel"},
+        {"Recipient19", "5", "None","0", "No Parcel"},
+        {"Recipient20", "5", "None","0", "No Parcel"},
+        {"Recipient21", "5", "None","0", "No Parcel"},
+        {"Recipient22", "5", "None","0", "No Parcel"},
+        {"Recipient23", "5", "None","0", "No Parcel"},
+        {"Recipient24", "5", "None","0", "No Parcel"},
+        {"Recipient25", "5", "None","0", "No Parcel"},
+        {"Recipient26", "5", "None","0", "No Parcel"},
+        {"Recipient27", "5", "None","0", "No Parcel"},
+        {"Recipient28", "5", "None","0", "No Parcel"},
+        {"Recipient29", "5", "None","0", "No Parcel"},
+        {"Recipient30", "5", "None","0", "No Parcel"}
         
     };
 
@@ -76,7 +76,7 @@ public static void savingDataToFile(String[][] poBox) throws IOException {
     PrintWriter en = new PrintWriter(new FileWriter(file));
 
     // Write data into the file named 'data.txt'
-    for (int i = 0; i < houseNumbers.length; i++) {
+    for (int i = 0; i < houseNumber.length; i++) {
         // Check if any of the required arrays or elements are null or if houseNumbers[i] is zero
         if (recipientNames[i] == null || poBox[i] == null || poBox[i][0] == null || houseNumbers[i] == 0) {
             continue;
