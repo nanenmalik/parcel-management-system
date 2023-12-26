@@ -7,13 +7,16 @@ public class Main {
         // Creating a Scanner object for user input
         Scanner input = new Scanner(System.in);
 
-
         int houseNumbers = 0;
         int option = 0;
         char answers;
+        int parcelcost;
+
+        String[][] poBox = new String[30][5];
+        String[] recipient = new String[houseNumbers];
 
         // load data from file if it already exists
-        ParcelStorage.loadDataFromFile( poBoxes[][]);         //call from PropertySystem file
+        ParcelStorage.loadDataFromFile(recipient, poBox, houseNumbers);         //call from PropertySystem file
 
         do{
             System.out.println("Welcome to Property Management\n");
@@ -25,18 +28,18 @@ public class Main {
             
             if( houseNumbers>=1 || houseNumbers<=30 ){
 
-                System.out.println("Hello " + poBoxes[houseNumbers][0]);
+                System.out.println("Hello " + poBox[houseNumbers][0]);
             
-                houseNumbers = houseNumbers - 1 ;
-                System.out.println("You have " + poBoxes[houseNumbers][4] + " parcel in your mail.");
+                houseNumbers = houseNumbers - 1 ;//poBoxes[houseNumbers][2] kena tukar jadi int
+                System.out.println("You have " + poBox[houseNumbers][2] + " parcel in your mail.");
 
-                if( poBoxes[houseNumbers][5] == "EXPIRED"){
-                    System.out.println("Your Parcel are EXPIRED.");
+                if( poBox[houseNumbers][5] == "EXPIRED"){
+                    System.out.println("Your Parcel has EXPIRED.");
                     System.out.println("Please contact your sender again to retrieve your parcel.");
                 }
 
-                else if( poBoxes[houseNumbers][5] == "NOTEXPIRED"){
-                    System.out.println("Your parcel are" ); // + countdown day
+                else if( poBox[houseNumbers][5] == "NONE"){
+                    System.out.println("Your parcel are" + poBox[houseNumbers][4]);
 
                     char answer;
                     do {
@@ -56,8 +59,8 @@ public class Main {
                             }
                         }
             
-                        timeExtended = poBoxes[houseNumbers][6].handleExtendTime(day);
-                        System.out.println("Parcel to extend cost is RM" + (day * 3));
+                        parcelcost = Parcel.handleExtendTime(day);
+                        System.out.println("Parcel to extend cost is RM" + parcelcost);
                         System.out.println("Your time has been extended to " + timeExtended);
             
                         System.out.println("Do you want to re-do? (Y/N): ");
@@ -66,7 +69,7 @@ public class Main {
                     } while (Character.toUpperCase(answer) == 'Y');
                 }
 
-                else if( poBoxes[houseNumbers][5] == "NOPARCEL"){
+                else if( poBox[houseNumbers][5] == "NOPARCEL"){
                     System.out.println("There are no parcel in your mail." ); // + countdown day
                 }
 
@@ -74,30 +77,31 @@ public class Main {
                 //put view data
 
             }
-            
+    //-------------------------------------------------------------------------------------------------------
+
             if ( houseNumbers == 999){
                 System.out.println("----------This is the System Update----------");
 
-            try{
-                System.out.println("1. View/Print all house data");
-                System.out.println("2. View/Print certain house data");
-                System.out.println("3. Update house data");
-                option = input.nextInt();   
-            }
-            catch (InputMismatchException e) {
-                System.out.println();
-                System.out.println("Error: Invalid input. Please enter a valid option.");
-                System.out.println();
-                input.nextLine(); // Consume the remaining input
-                continue; // Continue to the next iteration of the loop
+                try{
+                    System.out.println("1. insert all PO Box data");
+                    System.out.println("2. View/Print entered PO Box house number");
+                    System.out.println("3. Update PO Box data");
+                    option = input.nextInt();   
                 }
+                catch (InputMismatchException e) {
+                    System.out.println();
+                    System.out.println("Error: Invalid input. Please enter a valid option.");
+                    System.out.println();
+                    input.nextLine(); // Consume the remaining input
+                    continue; // Continue to the next iteration of the loop
+                    }
             
             switch (option) {
                 case 1:
                     //view all data
                         
                             try {
-                                ParcelStorage.viewPoBoxData(poBoxes[][]);
+                                ParcelStorage.insertingData( recipient, poBox, houseNumbers);
                                 } 
                             catch (IOException e) {
                                 System.out.println("Error: " + e.getMessage()); // Print the error message
@@ -107,15 +111,26 @@ public class Main {
                     
                 case 2:
                     //view [] house data
-                    poBoxes[houseNumbers][0];
+                    // Specify the row index you want to print
+                    int rowIndexToPrint = 0; // Change this to the desired row index
+                    houseNumbers = rowIndexToPrint;
+
+                    // Check if the specified row index is valid
+                    if (rowIndexToPrint >= 0 && rowIndexToPrint < poBox.length) {
+                    // Print the specified row
+                    System.out.println("Row " + rowIndexToPrint + ":");
+                        for (int i = 0; i < poBox[rowIndexToPrint].length; i++) {
+                        System.out.print(poBox[rowIndexToPrint][i] + " ");
+                        }
                     break;
-                    
+                    }
+
                 case 3:
                     //update data
                     try {
-                        ParcelStorage.updatePropertyData(poBoxes[][]);
+                        //ParcelStorage.updatePoBoxData( recipient, poBox, houseNumbers);
                         // save the updated data to file
-                        ParcelStorage.savingDataToFile(poBoxes[][]);
+                        ParcelStorage.savingDataToFile( recipient, poBox, houseNumbers);
                         } 
                     catch (IOException e) {
                         System.out.println("Error: " + e.getMessage()); // Print the error message
@@ -128,7 +143,5 @@ public class Main {
             answers = input.next().charAt(0);
 
         }while(Character.toUpperCase(answers) == 'Y');
-
-
     }
 }
