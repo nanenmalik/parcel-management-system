@@ -20,15 +20,15 @@ public class Parcel {
         return houseNumber;
     }
 
-    public String getRecipientName() {
+    public String getRecipientName() { 
         return recipientName;
     }
 
-    public LocalDate getStoredDate() {
+    public LocalDate getStoredDate() { 
         return storedDate;
     }
 
-    public boolean isExpired() {
+    public boolean isExpired() { 
         LocalDate currentDate = LocalDate.now();
         long daysDifference = ChronoUnit.DAYS.between(storedDate, currentDate);
 
@@ -44,21 +44,21 @@ public class Parcel {
         }
     }
 
-    public int getCountdownTime() {
+    public int getCountdownTime() { 
         return countdownTime;
     }
 
-    public double handleExtendTime(int days) {
+    public double handleExtendTime(int days) { 
         storedDate = storedDate.plusDays(days);
         parcelCost += days * 3;
         return parcelCost;
     }
 
-    public void handleReturn() {
+    public void handleReturn() { 
         storedDate = LocalDate.now();
     }
 
-    public double getParcelCost() {
+    public double getParcelCost() { 
         return parcelCost;
     }
 
