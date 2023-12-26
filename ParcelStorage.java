@@ -16,7 +16,7 @@ public class ParcelStorage {
     //private static final int
 
     //Method to load data from file
-    public static void loadDataFromFile(String[] recipientNames, String[][] poBox, int[] houseNumber) throws IOException {
+    public static void loadDataFromFile(String[][] poBox) throws IOException {
         File file = new File("data.txt");
         int count = 0;
         
@@ -24,8 +24,8 @@ public class ParcelStorage {
             while (in.hasNextLine()) {
                 String line = in.nextLine();
                 String[] data = line.split(",");
-                recipientNames[count] = data[0]; // read recipient name
-                houseNumber[count] = Integer.parseInt(data[1]); // read house number as integer
+                //recipientNames[count] = data[0]; // read recipient name
+                //houseNumber[count] = Integer.parseInt(data[1]); // read house number as integer
         
                 // Assuming poBox has 3 properties for each entry
                 poBox[count][0] = data[2]; // data[][0] = recipientNames

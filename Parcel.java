@@ -35,9 +35,14 @@ public class Parcel {
         return daysDifference > 2;
     }
     
-    public void handleExtendTime(int days) {
+    public int handleExtendTime(int days) {// gabung public double getParcelCost()
+        int time;
+
         storedDate = storedDate.plusDays(days);
         parcelCost += days * 3;
+        // time = countdown;
+
+        return time;
     }
     
     public void handleReturn() {
