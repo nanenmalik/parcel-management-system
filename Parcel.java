@@ -5,7 +5,7 @@ public class Parcel {
     private String recipientName;
     private int houseNumber;
     private LocalDate storedDate;
-    private int parcelCost;
+    public int parcelCost;
     private int countdownTime;
     private String[][] poBox = new String[30][5];
 
@@ -30,7 +30,7 @@ public class Parcel {
     }
 
     //time,day left ,parcel status
-    public int handleExtendTime(int days) { 
+    public static int handleExtendTime(int days) { 
         storedDate = storedDate.plusDays(days);
         parcelCost += days * 3;
 
