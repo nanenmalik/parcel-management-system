@@ -67,7 +67,7 @@ public class Parcel {
         if (isExpired()) {
             return "Expired Parcel for " + recipientName + " at " + houseNumber + " with countdown time: " + getCountdownTime();
         } else {
-            return "Not Expired Parcel for " + recipientName + " at " + houseNumber + " with countdown time: " + getCountdownTime();
+            return "Parcel for " + recipientName + " at " + houseNumber + " with countdown time: " + getCountdownTime();
         }
     }
 }
