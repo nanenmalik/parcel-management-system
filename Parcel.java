@@ -5,7 +5,7 @@ public class Parcel {
     private String recipientName;
     private int houseNumber;
     private LocalDate storedDate;
-    private double parcelCost;
+    private int parcelCost;
     private int countdownTime;
     private String[][] poBox = new String[30][5];
 
@@ -30,7 +30,7 @@ public class Parcel {
     }
 
     //time,day left ,parcel status
-    public double handleExtendTime(int days) { 
+    public int handleExtendTime(int days) { 
         storedDate = storedDate.plusDays(days);
         parcelCost += days * 3;
 
@@ -71,12 +71,12 @@ public class Parcel {
             return true;
         } else if (daysDifference == 2) {
             countdownTime = 1;
-            String parcelStatus = "NOTEXPIRED";
+            String parcelStatus = "NOT EXPIRED";
              poBox[houseNumber][5] = parcelStatus;
             return false;
         } else {
             countdownTime = 2;
-            String parcelStatus = "NOTEXPIRED";
+            String parcelStatus = "NOT EXPIRED";
              poBox[houseNumber][5] = parcelStatus;
             return false;
         }
