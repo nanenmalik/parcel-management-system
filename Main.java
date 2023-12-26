@@ -7,9 +7,6 @@ public class Main {
         // Creating a Scanner object for user input
         Scanner input = new Scanner(System.in);
 
-        String[] recipientNames = new String[30]; // 1D array to store user names
-        //int[] houseNumbers = new int[30]; // 1D array to store house numbers
-        //Parcel[][] poBoxes = new Parcel[30][3]; // 2D array to store Parcel objects
 
         int houseNumbers = 0;
         int option = 0;

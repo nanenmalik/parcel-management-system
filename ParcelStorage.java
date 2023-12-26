@@ -10,39 +10,37 @@ import java.util.Scanner;
 
 public class ParcelStorage {
 
-    Parcel[][] poBox = new Parcel[][] {
-        {new Parcel("Recipient1", 001, "Content1"), 
-         new Parcel("Recipient2", 002, "Content2"),
-         new Parcel("Recipient3", 003, "Content3"), 
-         new Parcel("Recipient4", 004, "Content4"),
-         new Parcel("Recipient5", 005, "Content5"), 
-         new Parcel("Recipient6", 006, "Content6"),
-         new Parcel("Recipient2", 007, "Content2"),
-         new Parcel("Recipient3", 008, "Content3"), 
-         new Parcel("Recipient4", 009, "Content4"),
-         new Parcel("Recipient5", 010, "Content5"), 
-
-         new Parcel("Recipient6", 011, "Content6"),
-         new Parcel("Recipient2", 012, "Content2"),
-         new Parcel("Recipient3", 013, "Content3"), 
-         new Parcel("Recipient4", 014, "Content4"),
-         new Parcel("Recipient5", 015, "Content5"), 
-         new Parcel("Recipient6", 016, "Content6"),
-         new Parcel("Recipient2", 017, "Content2"),
-         new Parcel("Recipient3", 018, "Content3"), 
-         new Parcel("Recipient4", 019, "Content4"),
-
-         new Parcel("Recipient5", 020, "Content5"), 
-         new Parcel("Recipient6", 021, "Content6"),
-         new Parcel("Recipient3", 023, "Content3"), 
-         new Parcel("Recipient4", 024, "Content4"),
-         new Parcel("Recipient5", 025, "Content5"), 
-         new Parcel("Recipient6", 026, "Content6"),
-         new Parcel("Recipient2", 027, "Content2"),
-         new Parcel("Recipient3", 028, "Content3"), 
-         new Parcel("Recipient4", 029, "Content4"),
-
-         new Parcel("Recipient5", 030, "Content5"), 
+    String [][] poBox = {
+        {"Recipient1", "5", "None","0", "No Parcel"}, 
+        {"Recipient2", "5", "None","0", "No Parcel"},
+        {"Recipient3", "5", "None","0", "No Parcel"},
+        {"Recipient4", "5", "None","0", "No Parcel"},
+        {"Recipient5", "5", "None","0", "No Parcel"},
+        {"Recipient6", "5", "None","0", "No Parcel"},
+        {"Recipient7", "5", "None","0", "No Parcel"},
+        {"Recipient8", "5", "None","0", "No Parcel"},
+        {"Recipient9", "5", "None","0", "No Parcel"},
+        {"Recipient10", "5", "None","0", "No Parcel"},
+        {"Recipient11", "5", "None","0", "No Parcel"},
+        {"Recipient12", "5", "None","0", "No Parcel"},
+        {"Recipient13", "5", "None","0", "No Parcel"},
+        {"Recipient14", "5", "None","0", "No Parcel"},
+        {"Recipient15", "5", "None","0", "No Parcel"},
+        {"Recipient16", "5", "None","0", "No Parcel"},
+        {"Recipient17", "5", "None","0", "No Parcel"},
+        {"Recipient18", "5", "None","0", "No Parcel"},
+        {"Recipient19", "5", "None","0", "No Parcel"},
+        {"Recipient20", "5", "None","0", "No Parcel"},
+        {"Recipient21", "5", "None","0", "No Parcel"},
+        {"Recipient22", "5", "None","0", "No Parcel"},
+        {"Recipient23", "5", "None","0", "No Parcel"},
+        {"Recipient24", "5", "None","0", "No Parcel"},
+        {"Recipient25", "5", "None","0", "No Parcel"},
+        {"Recipient26", "5", "None","0", "No Parcel"},
+        {"Recipient27", "5", "None","0", "No Parcel"},
+        {"Recipient28", "5", "None","0", "No Parcel"},
+        {"Recipient29", "5", "None","0", "No Parcel"},
+        {"Recipient30", "5", "None","0", "No Parcel"}
         
     };
 
@@ -50,19 +48,19 @@ public class ParcelStorage {
     public static void loadDataFromFile(String[][] poBox) throws IOException {
         File file = new File("data.txt");
         int count = 0;
-        
+    
         try (Scanner in = new Scanner(file)) {
             while (in.hasNextLine()) {
                 String line = in.nextLine();
                 String[] data = line.split(",");
-                //recipientNames[count] = data[0]; // read recipient name
-                //houseNumber[count] = Integer.parseInt(data[1]); // read house number as integer
-        
-                // Assuming poBox has 3 properties for each entry
-                poBox[count][0] = data[2]; // data[][0] = recipientNames
-                poBox[count][1] = data[3]; // data[][1] = houseNumber
-                poBox[count][2] = data[4]; // data[][2] = total units parcelbox that have been occupied
-        
+    
+                // Assuming poBox has 5 properties for each entry
+                poBox[count][0] = data[0]; // data[][0] = Recipient Name
+                poBox[count][1] = data[1]; // data[][1] = House Number
+                poBox[count][2] = data[2]; // data[][2] = Content
+                poBox[count][3] = data[3]; // data[][3] = Total Units
+                poBox[count][4] = data[4]; // data[][4] = Parcel Status
+    
                 count++; // increment count to read the next index 
             }
         } catch (FileNotFoundException e) {
@@ -73,38 +71,35 @@ public class ParcelStorage {
         
 
     // Method to save data to file
-public static void savingDataToFile(String[][] poBox) throws IOException {
-    File file = new File("data.txt");
-    PrintWriter en = new PrintWriter(new FileWriter(file));
+    public static void savingDataToFile(String[][] poBox) throws IOException {
+        File file = new File("data.txt");
+        PrintWriter en = new PrintWriter(new FileWriter(file));
 
-    // Write data into the file named 'data.txt'
-    for (int i = 0; i < houseNumbers.length; i++) {
-        // Check if any of the required arrays or elements are null or if houseNumbers[i] is zero
-        if (recipientNames[i] == null || poBox[i] == null || poBox[i][0] == null || houseNumbers[i] == 0) {
-            continue;
+        // Write data into the file named 'data.txt'
+        for (int i = 0; i < poBox.length; i++) {
+            // Check if any of the required arrays or elements are null or if houseNumbers[i] is zero
+            
+
+            // Write data to the file
+            en.write(poBox[i][0] + "," + poBox[i][1] + "," + poBox[i][2] + "," + poBox[i][3] + "," + poBox[i][4]);
+            en.println();
         }
 
-        // Write data to the file
-        en.write(houseNumbers[i] + "," + recipientNames[i] + "," + poBox[i][0] + "," + poBox[i][1] + "," + poBox[i][2]);
-        en.println();
+        en.close();
     }
 
-    en.close();
-}
+    //method to view poBox info
+    public void viewPoBoxData() {
+        System.out.println("______________________________________________________________________________________");
+        System.out.printf("\n%-20s\t%-10s\t%-20s\t%-10s\t%-20s\n", "Recipient Name", "House Number", "Content", "Total Units", "Parcel Status");
+        System.out.println("______________________________________________________________________________________");
 
-// Method to view data
-public static void viewPoBoxData(Parcel[][] poBoxes) {
-    System.out.println("______________________________________________________________________________________");
-    System.out.printf("\n%-20s\t%-10s\t%-20s\n", "Recipient Name", "House Number", "Content");
-    System.out.println("______________________________________________________________________________________");
-
-    for (Parcel[] row : poBoxes) {
-        if (row[0] != null) {
-            System.out.printf("%-20s\t%-10d\t%-20s\n", row[0].getRecipientName(), row[0].getHouseNumber(), row[0].getContent());
+        for (String[] parcelData : poBox) {
+            if (parcelData[0] != null) {
+                System.out.printf("%-20s\t%-10s\t%-20s\t%-10s\t%-20s\n",
+                        parcelData[0], parcelData[1], parcelData[2], parcelData[3], parcelData[4]);
+            }
         }
+        System.out.println();
     }
-    System.out.println();
 }
-}
-    
-
