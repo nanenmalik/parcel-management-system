@@ -100,7 +100,7 @@ public class Main {
                     //view all data
                         
                             try {
-                                ParcelStorage.viewPropertyData(poBox[][]);
+                                ParcelStorage.viewPoBoxData(poBoxes[][]);
                                 } 
                             catch (IOException e) {
                                 System.out.println("Error: " + e.getMessage()); // Print the error message
@@ -116,9 +116,9 @@ public class Main {
                 case 3:
                     //update data
                     try {
-                        PropertySystem.updatePropertyData(agents, customers, properties);
+                        ParcelStorage.updatePropertyData(poBoxes[][]);
                         // save the updated data to file
-                        PropertySystem.savingDataToFile(agents, customers, properties);
+                        ParcelStorage.savingDataToFile(poBoxes[][]);
                         } 
                     catch (IOException e) {
                         System.out.println("Error: " + e.getMessage()); // Print the error message

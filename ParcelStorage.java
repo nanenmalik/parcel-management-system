@@ -10,6 +10,42 @@ import java.util.Scanner;
 
 public class ParcelStorage {
 
+    Parcel[][] poBox = new Parcel[][] {
+        {new Parcel("Recipient1", 001, "Content1"), 
+         new Parcel("Recipient2", 002, "Content2"),
+         new Parcel("Recipient3", 003, "Content3"), 
+         new Parcel("Recipient4", 004, "Content4"),
+         new Parcel("Recipient5", 005, "Content5"), 
+         new Parcel("Recipient6", 006, "Content6"),
+         new Parcel("Recipient2", 007, "Content2"),
+         new Parcel("Recipient3", 008, "Content3"), 
+         new Parcel("Recipient4", 009, "Content4"),
+         new Parcel("Recipient5", 010, "Content5"), 
+
+         new Parcel("Recipient6", 011, "Content6"),
+         new Parcel("Recipient2", 012, "Content2"),
+         new Parcel("Recipient3", 013, "Content3"), 
+         new Parcel("Recipient4", 014, "Content4"),
+         new Parcel("Recipient5", 015, "Content5"), 
+         new Parcel("Recipient6", 016, "Content6"),
+         new Parcel("Recipient2", 017, "Content2"),
+         new Parcel("Recipient3", 018, "Content3"), 
+         new Parcel("Recipient4", 019, "Content4"),
+
+         new Parcel("Recipient5", 020, "Content5"), 
+         new Parcel("Recipient6", 021, "Content6"),
+         new Parcel("Recipient3", 023, "Content3"), 
+         new Parcel("Recipient4", 024, "Content4"),
+         new Parcel("Recipient5", 025, "Content5"), 
+         new Parcel("Recipient6", 026, "Content6"),
+         new Parcel("Recipient2", 027, "Content2"),
+         new Parcel("Recipient3", 028, "Content3"), 
+         new Parcel("Recipient4", 029, "Content4"),
+
+         new Parcel("Recipient5", 030, "Content5"), 
+        
+    };
+
     //Method to load data from file
     public static void loadDataFromFile(String[][] poBox) throws IOException {
         File file = new File("data.txt");
@@ -57,7 +93,7 @@ public static void savingDataToFile(String[][] poBox) throws IOException {
 }
 
 // Method to view data
-public static void viewPropertyData(Parcel[][] poBoxes) {
+public static void viewPoBoxData(Parcel[][] poBoxes) {
     System.out.println("______________________________________________________________________________________");
     System.out.printf("\n%-20s\t%-10s\t%-20s\n", "Recipient Name", "House Number", "Content");
     System.out.println("______________________________________________________________________________________");
@@ -71,4 +107,4 @@ public static void viewPropertyData(Parcel[][] poBoxes) {
 }
 }
     
-}
+
