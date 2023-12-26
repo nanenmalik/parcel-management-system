@@ -31,23 +31,24 @@ public class ParcelStorage {
         
         System.out.print("Enter agent name: ");                 //Eg: Nadiah/ Syaza
         recipients[houseNumbers] = input.nextLine();
-        
+        poBox[houseNumbers - 1][1] = recipients[houseNumbers]; // Fix index here
+
         do {
-            System.out.println("Enter Unit Slot Number: ");     
+            System.out.println("Enter Unit Slot Number: ");
             unitSlot = input.nextInt();
-            poBox[houseNumbers][2] = Integer.toString(unitSlot);
+            poBox[houseNumbers - 1][2] = Integer.toString(unitSlot); // Fix index here
 
-            System.out.println("Enter (Extend/None): ");     
+            System.out.println("Enter (Extend/None): ");
             time = input.nextLine();
-            poBox[houseNumbers][3] = time;
+            poBox[houseNumbers - 1][3] = time; // Fix index here
 
-            System.out.println("Enter Day Left : ");     
+            System.out.println("Enter Day Left : ");
             dayLeft = input.nextInt();
-            poBox[houseNumbers][4] = Integer.toString(dayLeft);
+            poBox[houseNumbers - 1][4] = Integer.toString(dayLeft); // Fix index here
 
-            System.out.println("Enter Day Left (Extend/None): ");     
+            System.out.println("Enter Day Left (Extend/None): ");
             parcelStatus = input.nextLine();
-            poBox[houseNumbers][5] = parcelStatus;
+            poBox[houseNumbers - 1][5] = parcelStatus; // Fix index here
 
             System.out.println("Do you want to re-do? (Y/N): ");
             answer = input.next().charAt(0);

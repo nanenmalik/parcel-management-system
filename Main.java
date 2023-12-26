@@ -3,20 +3,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Creating a Scanner object for user input
         Scanner input = new Scanner(System.in);
 
         int houseNumbers = 0;
         int option = 0;
-        char answers;
-        int parcelcost;
+        char answers = ' ';
+        int parcelCost;
 
         String[][] poBox = new String[30][5];
         String[] recipient = new String[houseNumbers];
 
         // load data from file if it already exists
-        ParcelStorage.loadDataFromFile(recipient, poBox, houseNumbers);         //call from PropertySystem file
+        ParcelStorage.loadDataFromFile ( recipient, poBox, houseNumbers );         //call from ParcelStorage file
 
         do{
             System.out.println("Welcome to Property Management\n");
@@ -26,11 +26,11 @@ public class Main {
             System.out.println("Enter house number:");
             houseNumbers = input.nextInt();
             
-            if( houseNumbers>=1 || houseNumbers<=30 ){
+            if( houseNumbers>=1 && houseNumbers<=30 ){
 
                 System.out.println("Hello " + poBox[houseNumbers][0]);
             
-                houseNumbers = houseNumbers - 1 ;//poBoxes[houseNumbers][2] kena tukar jadi int
+                houseNumbers = houseNumbers - 1;
                 System.out.println("You have " + poBox[houseNumbers][2] + " parcel in your mail.");
 
                 if( poBox[houseNumbers][5] == "EXPIRED"){
@@ -49,6 +49,21 @@ public class Main {
                         System.out.println("Do you wish to extend time for your parcel package?");
                         
                         // Input validation
+                        class Parcel {
+                            private int costPerDay;
+
+                            public Parcel() {
+                                // Initialize the cost per day
+                                costPerDay = 10;
+                            }
+
+                            public int handleExtendTime(int day) {
+                                return costPerDay * day;
+                            }
+                        }
+
+                        // ...
+
                         while (true) {
                             try {
                                 day = input.nextInt();
@@ -58,9 +73,10 @@ public class Main {
                                 input.next(); // Consume the invalid input
                             }
                         }
-            
-                        parcelcost = Parcel.handleExtendTime(day);
-                        System.out.println("Parcel to extend cost is RM" + parcelcost);
+
+                        Parcel parcel = new Parcel(); // Create an instance of the Parcel class
+                        parcelCost = parcel.handleExtendTime(day);
+                        System.out.println("Parcel to extend cost is RM" + parcelCost);
                         System.out.println("Your time has been extended to " + timeExtended);
             
                         System.out.println("Do you want to re-do? (Y/N): ");
@@ -79,7 +95,7 @@ public class Main {
             }
     //-------------------------------------------------------------------------------------------------------
 
-            if ( houseNumbers == 999){
+            else if ( houseNumbers == 999){
                 System.out.println("----------This is the System Update----------");
 
                 try{
@@ -142,6 +158,9 @@ public class Main {
             System.out.println("Do you want to re-do? (Y/N): ");
             answers = input.next().charAt(0);
 
-        }while(Character.toUpperCase(answers) == 'Y');
+        }
+        while(Character.toUpperCase(answers) == 'Y');
+
+        input.close();
     }
 }
