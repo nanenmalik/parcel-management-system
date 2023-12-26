@@ -16,7 +16,7 @@ public class Parcel {
         this.countdownTime = 0;
     }
 
-    public int getHouseNumber() {
+    public int getHouseNumber() { //getter
         return houseNumber;
     }
 
