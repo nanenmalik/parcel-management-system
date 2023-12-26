@@ -36,7 +36,7 @@ public class Parcel {
     }
     
     public int handleExtendTime(int days) {// gabung public double getParcelCost()
-        int time;
+        int time=0;
 
         storedDate = storedDate.plusDays(days);
         parcelCost += days * 3;

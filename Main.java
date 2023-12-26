@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -76,9 +78,60 @@ public class Main {
 
             }
             
+            if ( houseNumbers == 999){
+                System.out.println("----------This is the System Update----------");
+
+            try{
+                System.out.println("1. View/Print all house data");
+                System.out.println("2. View/Print certain house data");
+                System.out.println("3. Update house data");
+                option = input.nextInt();   
+            }
+            catch (InputMismatchException e) {
+                System.out.println();
+                System.out.println("Error: Invalid input. Please enter a valid option.");
+                System.out.println();
+                input.nextLine(); // Consume the remaining input
+                continue; // Continue to the next iteration of the loop
+                }
+            
+            switch (option) {
+                case 1:
+                    //view all data
+                        
+                            try {
+                                ParcelStorage.viewPropertyData(poBox[][]);
+                                } 
+                            catch (IOException e) {
+                                System.out.println("Error: " + e.getMessage()); // Print the error message
+                                // Additional error handling if needed
+                                }
+                                break;
+                    
+                case 2:
+                    //view [] house data
+                    poBoxes[houseNumbers][0];
+                    break;
+                    
+                case 3:
+                    //update data
+                    try {
+                        PropertySystem.updatePropertyData(agents, customers, properties);
+                        // save the updated data to file
+                        PropertySystem.savingDataToFile(agents, customers, properties);
+                        } 
+                    catch (IOException e) {
+                        System.out.println("Error: " + e.getMessage()); // Print the error message
+                        // Additional error handling if needed
+                        }
+                    break;
+            }
+        }
             System.out.println("Do you want to re-do? (Y/N): ");
             answers = input.next().charAt(0);
 
         }while(Character.toUpperCase(answers) == 'Y');
+
+
     }
 }

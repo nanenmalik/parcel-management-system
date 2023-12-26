@@ -5,15 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ParcelStorage {
-   
-    //private static final int MAX_SLOTS = 30;
-
-
-    //private static final int
 
     //Method to load data from file
     public static void loadDataFromFile(String[][] poBox) throws IOException {
@@ -42,7 +37,7 @@ public class ParcelStorage {
         
 
     // Method to save data to file
-public static void savingDataToFile(String[] recipientNames, String[][] poBox, int[] houseNumbers) throws IOException {
+public static void savingDataToFile(String[][] poBox) throws IOException {
     File file = new File("data.txt");
     PrintWriter en = new PrintWriter(new FileWriter(file));
 
@@ -61,5 +56,19 @@ public static void savingDataToFile(String[] recipientNames, String[][] poBox, i
     en.close();
 }
 
+// Method to view data
+public static void viewPropertyData(Parcel[][] poBoxes) {
+    System.out.println("______________________________________________________________________________________");
+    System.out.printf("\n%-20s\t%-10s\t%-20s\n", "Recipient Name", "House Number", "Content");
+    System.out.println("______________________________________________________________________________________");
+
+    for (Parcel[] row : poBoxes) {
+        if (row[0] != null) {
+            System.out.printf("%-20s\t%-10d\t%-20s\n", row[0].getRecipientName(), row[0].getHouseNumber(), row[0].getContent());
+        }
+    }
+    System.out.println();
+}
+}
     
 }
