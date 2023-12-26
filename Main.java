@@ -11,10 +11,11 @@ public class Main {
 
         int houseNumbers = 0;
         int option = 0;
-        
+        char answers;
 
         // load data from file if it already exists
         ParcelStorage.loadDataFromFile( poBoxes[][]);         //call from PropertySystem file
+
         do{
             System.out.println("Welcome to Property Management\n");
 
@@ -57,7 +58,7 @@ public class Main {
                         }
             
                         timeExtended = poBoxes[houseNumbers][6].handleExtendTime(day);
-                        System.out.println("The cost is RM" + (day * 3));
+                        System.out.println("Parcel to extend cost is RM" + (day * 3));
                         System.out.println("Your time has been extended to " + timeExtended);
             
                         System.out.println("Do you want to re-do? (Y/N): ");
@@ -74,7 +75,10 @@ public class Main {
                 //put view data
 
             }
+            
+            System.out.println("Do you want to re-do? (Y/N): ");
+            answers = input.next().charAt(0);
 
-        }while
+        }while(Character.toUpperCase(answers) == 'Y');
     }
 }
