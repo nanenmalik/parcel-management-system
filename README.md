@@ -2,7 +2,7 @@
 
 case study repository
 
-Group name    : S3N
+Group name    : 6
 
 Group Members : 1) Nur Nabila Radiah Binti Ahmad Ridzuan (2213554)
                 2) Nur Amira Nabila Binti Mohd Ab Rahman (2220682)
