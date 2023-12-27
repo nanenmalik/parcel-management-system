@@ -1,16 +1,32 @@
-//ParcelStorage.java
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-//import java.util.InputMismatchException;
-//import java.util.ArrayList;
+import java.io.*;
 import java.util.Scanner;
 
+class AuthenticationException extends Exception {
+    public AuthenticationException(String message) {
+        super(message);
+    }
+}
 public class ParcelStorage {
     
+    public static String systemAuthentication(String[] recipient, String[] houseNumber, String[][] poBox) {
+        Scanner in = new Scanner(System.in);
+    
+        System.out.println("Enter username:");
+        String username = in.nextLine();
+    
+        System.out.println("Enter password:");
+        String password = in.nextLine();
+    
+        String correctUsername = "user123";
+        String correctPassword = "pass456";
+    
+        boolean isAuthenticated = username.equals(correctUsername) && password.equals(correctPassword);
+    
+        // Close the scanner
+        in.close();
+    
+        return isAuthenticated ? username : null;
+    }
     // Method to insert data
     public static int insertingData(String[] recipient, String[] houseNumber, String[][] poBox, int count) {
     
@@ -46,8 +62,12 @@ public class ParcelStorage {
         
         System.out.println("Data inserted successfully.\n");
         
+        in.close();
+
         return count;
     }
+
+    
   
 // Method to view data
     public static void viewPropertyData(String[] recipient, String[] houseNumber, String[][] poBox) {
@@ -114,6 +134,7 @@ public class ParcelStorage {
 
         System.out.println("Data successfully updated.\n");  // display message that data successfully updated
         
+        in.close();
         }
     
 
@@ -201,7 +222,28 @@ public class ParcelStorage {
         }
         return null;
     }
-
+    
     public static int findUserRowIndex(String[][] poBox, String username) {
-        return 0;
+        for (int row = 0; row < poBox.length; row++) {
+            if (poBox[row][0].equals(username)) {
+                return row; // User found
+            }
+        }
+        return -1; // User not found
     }
+
+    public static void printColumnsForRow(String[][] poBox, int row) {
+        if (row >= 0 && row < poBox.length) {
+            // Print all columns for the specified row
+            System.out.println("Columns for row " + row + ":");
+            for (int col = 0; col < poBox[row].length; col++) {
+                System.out.print(poBox[row][col] + " ");
+            }
+        } else {
+            System.out.println("Invalid row index.");
+        }
+    }
+    
+    
+    
+}

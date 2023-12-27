@@ -1,7 +1,8 @@
-import java.io.IOException;
-//import java.util.InputMismatchException;
-import java.util.Scanner;
 
+import java.io.*;
+import java.util.Scanner;
+/**
+ */
 public class Main {
     public static void main(String[] args) throws IOException {
 
@@ -17,8 +18,8 @@ public class Main {
         int row = 0 ;
         char answer;
         
-        
-        boolean isAuthenticated = username;
+        ParcelStorage.systemAuthentication(recipient, houseNumber, poBox);
+
         //boolean
 
         // load data from file if it already exists
@@ -30,12 +31,8 @@ public class Main {
         // Print the result
         System.out.println("Hello " + username + (". Hope you are in a good Day!!"));
 
-
-        
-
-            
     do{
-            System.out.print("");
+            System.out.print("----- Welcome to PO Box -----");
 
             System.out.println("1. Check Inbox");
             System.out.println("2. View/Print Your POBox");
@@ -114,12 +111,13 @@ public class Main {
                 if( answer == 'N'){
                     break;
                 }
-
-        }while( answer == 'Y');
+                answer = in.next().charAt(0);
+            } while (answer == 'Y' || answer == 'y');
          
+        boolean isAuthenticated;
         //-------------------------------------------------------------------------------------------------------
         if (isAuthenticated) {
-            username = ParcelStorage.userAuthentication(recipient, houseNumber, poBox);
+            
     
         // Main menu for parcel management system
         while (isAuthenticated) {
@@ -180,6 +178,3 @@ public class Main {
             in.close();
         }
     }
-
-        
-        
