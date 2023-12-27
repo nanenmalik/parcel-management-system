@@ -1,7 +1,7 @@
-import java.io.IOException;
-//import java.util.InputMismatchException;
+import java.io.*;
 import java.util.Scanner;
-
+/**
+ */
 public class Main {
     public static void main(String[] args) throws IOException {
 
@@ -9,30 +9,28 @@ public class Main {
         Scanner in = new Scanner(System.in); 
         
         // Variables to store information about agents, properties, and customers
-        String[] recipient = new String[10];          //1D array to store agents name
-        String[] houseNumber = new String[10];       //1D array to store customers name
-        String[][] poBox = new String[10][7]; // 2D array to store properties, 
+        String[] recipient = new String[31];          //1D array to store agents name
+        String[] houseNumber = new String[30];       //1D array to store customers name
+        String[][] poBox = new String[31][7]; // 2D array to store properties, 
                                                    //each row representing a property and each column representing a property detail 
         int count = 0 ;
         int row = 0 ;
+        char answer;
+        
         
         //boolean
 
         // load data from file if it already exists
         ParcelStorage.loadDataFromFile(recipient, houseNumber, poBox);         //call Parcel Storage file
         System.out.println("Welcome to Property Management\n");
-        
-        String username = ParcelStorage.userAuthentication( recipient, houseNumber, poBox);
 
+        String username = ParcelStorage.userAuthentication( recipient, houseNumber, poBox);
+        
         // Print the result
         System.out.println("Hello " + username + (". Hope you are in a good Day!!"));
 
-
-        if(count > 0 && count < 31){//idk
-
-            
-
-            System.out.print("");
+    do{
+            System.out.print("----- Welcome to PO Box -----");
 
             System.out.println("1. Check Inbox");
             System.out.println("2. View/Print Your POBox");
@@ -43,7 +41,20 @@ public class Main {
                 case 1:{//check inbox
                     {
                         row = ParcelStorage.findUserRowIndex( poBox, username);
-
+                        
+                        Parcel parcel = new Parcel(recipient, houseNumber, poBox); // Create an instance of the Parcel class
+                        if (parcel.isExpired()) {
+                            System.out.println("Your Parcel has EXPIRED.");
+                            System.out.println("Please contact your sender again to retrieve your parcel.");
+                        } else {
+                            System.out.println("Your parcel has " + parcel.getCountdownTime() + " days left.");
+                            System.out.println("Do you wish to extend time for your parcel package? Enter days: ");
+                            int daysToExtend = in.nextInt();
+                            
+                            int parcelCost = parcel.handleExtendTime(daysToExtend);
+                            System.out.println("Parcel to extend cost is RM" + parcelCost);
+                            System.out.println("Your time has been extended to " + parcel.getCountdownTime() + " days.");
+                        }
                         // if( poBox[houseNumbers][5] == "EXPIRED"){
                         //     System.out.println("Your Parcel has EXPIRED.");
                         //     System.out.println("Please contact your sender again to retrieve your parcel.");
@@ -105,16 +116,24 @@ public class Main {
                         System.out.println("Invalid choice.");
                         System.out.println();
                   }
-        }
+
+            System.out.println("Do you want to continue?(Y/N): ");
+            answer = ' ';
+                if( answer == 'N'){
+                    break;
+                }
+                answer = in.next().charAt(0);
+            } while (answer == 'Y' || answer == 'y');
          
-        
-        
-        
-
-
+    
         //-------------------------------------------------------------------------------------------------------
+        boolean isAuthenticated = false;
+
+        if (isAuthenticated) {
+            
+    
         // Main menu for parcel management system
-        while (true) {
+        while (isAuthenticated) {
 
             count = 0;
 
@@ -163,7 +182,12 @@ public class Main {
                         System.out.println();
                   }                 
                 }
-                
             }
+            else {
+                System.out.println("Authentication failed. Exiting the program.");
+            }
+        
+            // Close the scanner
+            in.close();
         }
-    
+    }
