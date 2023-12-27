@@ -1,16 +1,32 @@
-//ParcelStorage.java
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-//import java.util.InputMismatchException;
-//import java.util.ArrayList;
+import java.io.*;
 import java.util.Scanner;
 
+class AuthenticationException extends Exception {
+    public AuthenticationException(String message) {
+        super(message);
+    }
+}
 public class ParcelStorage {
     
+    public static String systemAuthentication(String[] recipient, String[] houseNumber, String[][] poBox) {
+        Scanner in = new Scanner(System.in);
+    
+        System.out.println("Enter username:");
+        String username = in.nextLine();
+     
+        System.out.println("Enter password:");
+        String password = in.nextLine();
+    
+        String correctUsername = "user123";
+        String correctPassword = "pass456";
+    
+        boolean isAuthenticated = username.equals(correctUsername) && password.equals(correctPassword);
+    
+        // Close the scanner
+        in.close();
+    
+        return isAuthenticated ? username : null;
+    }
     // Method to insert data
     public static int insertingData(String[] recipient, String[] houseNumber, String[][] poBox, int count) {
     
@@ -46,16 +62,19 @@ public class ParcelStorage {
         
         System.out.println("Data inserted successfully.\n");
         
+        in.close();
+
         return count;
     }
+  
   
 // Method to view data
     public static void viewPropertyData(String[] recipient, String[] houseNumber, String[][] poBox) {
 
         System.out.println();
-        System.out.println("__________________________________________________________________________________________________________________________________________");
+        System.out.println("______________________________________________");
         System.out.printf("\n%-10s%-15s\t%-15s\t%-15s\t%-15s\t%-15s\t%-15s\t%-15s\t%-15s\n", "Index", "Recipient","House Number", "Username","Slot Avail ","Units Sold","Time Pickup","Total Parcel","ParcelStatus");
-        System.out.println("__________________________________________________________________________________________________________________________________________");
+        System.out.println("______________________________________________");
 
         for (int i = 0; i < recipient.length; i++) {
             if (recipient[i] == null  && houseNumber[i] == null &&  poBox[i][0] == null) {
@@ -114,6 +133,7 @@ public class ParcelStorage {
 
         System.out.println("Data successfully updated.\n");  // display message that data successfully updated
         
+        in.close();
         }
     
 
@@ -201,15 +221,57 @@ public class ParcelStorage {
         }
         return null;
     }
-    
 
-    
-
-class AuthenticationException extends Exception {
-    public AuthenticationException(String message) {
-        super(message);
+   /*  public void getAuthenticatedUser(String[][] poBox) throws AuthenticationException {
+        String username = userAuthentication(poBox);
+        int userRowIndex = findUserRowIndex(poBox, username);
+        if (userRowIndex >= 0) {
+            printColumnsForRow(poBox, userRowIndex);
+        } else {
+            System.out.println("User not found.");
+        }
+    }*/
+    public String getAuthenticatedUser(String[][] poBox) throws AuthenticationException {
+        String username = userAuthentication(poBox);
+        int userRowIndex = findUserRowIndex(poBox, username);
+        if (userRowIndex >= 0) {
+            printColumnsForRow(poBox, userRowIndex);
+            return username;
+        } else {
+            System.out.println("User not found.");
+            return null;
+        }
     }
-}
+    
+    public static String userAuthentication(String[][] poBox) throws AuthenticationException {
+        Scanner in = new Scanner(System.in);
+
+        try {
+            System.out.println("Enter username:");
+            String username = in.nextLine();
+
+            System.out.println("Enter password:");
+            String password = in.nextLine();
+
+            String correctUsername = "user123";
+            String correctPassword = "pass456";
+
+            if (username.equals(correctUsername) && password.equals(correctPassword)) {
+                System.out.println("Authentication successful. Welcome, " + username + "!");
+                return username;
+            } else {
+                throw new AuthenticationException("Authentication failed. Invalid username or password.");
+            }
+        } catch (AuthenticationException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            // Close the scanner in the finally block to ensure it gets closed
+            if (in != null) {
+                in.close();
+            }
+        }
+        return null;
+    }
     
     public static int findUserRowIndex(String[][] poBox, String username) {
         for (int row = 0; row < poBox.length; row++) {
@@ -231,6 +293,7 @@ class AuthenticationException extends Exception {
             System.out.println("Invalid row index.");
         }
     }
+    
     
     
 }
