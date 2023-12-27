@@ -9,28 +9,32 @@ public class Main {
         Scanner in = new Scanner(System.in); 
         
         // Variables to store information about agents, properties, and customers
-        String[] recipient = new String[10];          //1D array to store agents name
-        String[] houseNumber = new String[10];       //1D array to store customers name
-        String[][] poBox = new String[10][7]; // 2D array to store properties, 
+        String[] recipient = new String[31];          //1D array to store agents name
+        String[] houseNumber = new String[30];       //1D array to store customers name
+        String[][] poBox = new String[31][7]; // 2D array to store properties, 
                                                    //each row representing a property and each column representing a property detail 
         int count = 0 ;
         int row = 0 ;
+        char answer;
         
+        
+        boolean isAuthenticated = username;
         //boolean
 
         // load data from file if it already exists
         ParcelStorage.loadDataFromFile(recipient, houseNumber, poBox);         //call Parcel Storage file
         System.out.println("Welcome to Property Management\n");
-        
-        String username = ParcelStorage.userAuthentication( recipient, houseNumber, poBox);
 
+        String username = ParcelStorage.userAuthentication( recipient, houseNumber, poBox);
+        
         // Print the result
         System.out.println("Hello " + username + (". Hope you are in a good Day!!"));
 
-        if(count > 0 && count < 31){//idk
+
+        
 
             
-
+    do{
             System.out.print("");
 
             System.out.println("1. Check Inbox");
@@ -104,16 +108,21 @@ public class Main {
                         System.out.println("Invalid choice.");
                         System.out.println();
                   }
-        }
+
+            System.out.println("Do you want to continue?(Y/N): ");
+            answer = ' ';
+                if( answer == 'N'){
+                    break;
+                }
+
+        }while( answer == 'Y');
          
-        
-        
-        
-
-
         //-------------------------------------------------------------------------------------------------------
+        if (isAuthenticated) {
+            username = ParcelStorage.userAuthentication(recipient, houseNumber, poBox);
+    
         // Main menu for parcel management system
-        while (true) {
+        while (isAuthenticated) {
 
             count = 0;
 
@@ -162,6 +171,15 @@ public class Main {
                         System.out.println();
                   }                 
                 }
-                
             }
+            else {
+                System.out.println("Authentication failed. Exiting the program.");
+            }
+        
+            // Close the scanner
+            in.close();
         }
+    }
+
+        
+        

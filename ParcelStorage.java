@@ -201,36 +201,7 @@ public class ParcelStorage {
         }
         return null;
     }
-    
 
-    
-
-class AuthenticationException extends Exception {
-    public AuthenticationException(String message) {
-        super(message);
-    }
-}
-    
     public static int findUserRowIndex(String[][] poBox, String username) {
-        for (int row = 0; row < poBox.length; row++) {
-            if (poBox[row][0].equals(username)) {
-                return row; // User found
-            }
-        }
-        return -1; // User not found
+        return 0;
     }
-
-    public static void printColumnsForRow(String[][] poBox, int row) {
-        if (row >= 0 && row < poBox.length) {
-            // Print all columns for the specified row
-            System.out.println("Columns for row " + row + ":");
-            for (int col = 0; col < poBox[row].length; col++) {
-                System.out.print(poBox[row][col] + " ");
-            }
-        } else {
-            System.out.println("Invalid row index.");
-        }
-    }
-    
-    
-}
