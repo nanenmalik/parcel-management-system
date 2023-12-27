@@ -2,27 +2,30 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Parcel {
-    private String recipientName;
+    private String[] recipient ;
     private int houseNumber;
     private LocalDate storedDate;
     public int parcelCost;
     private int countdownTime;
-    private String[][] poBox = new String[30][5];
+    private String[][] poBox;
 
-    public Parcel(String recipientName, int houseNumber, String content) {
-        this.recipientName = recipientName;
+    public Parcel(String[] recipient, int houseNumber, String[][] poBox) {
+        this.recipient = recipient;
         this.houseNumber = houseNumber;
         this.storedDate = LocalDate.now();
         this.parcelCost = 0;
         this.countdownTime = 0;
     }
 
+    public Parcel(Object recipient2, Object houseNumber2, Object poBox2) {
+    }
+
     public int getHouseNumber() { //getter
         return houseNumber;
     }
 
-    public String getRecipientName() { 
-        return recipientName;
+    public String[] getRecipient() { 
+        return recipient;
     }
 
     public LocalDate getStoredDate() { 
@@ -30,29 +33,31 @@ public class Parcel {
     }
 
     //time,day left ,parcel status
-    public static int handleExtendTime(int days) { 
+    public int handleExtendTime(int days) { 
         storedDate = storedDate.plusDays(days);
         parcelCost += days * 3;
 
         if(days == 0){
             String time = "Extend";
-            poBox[houseNumber][3] = time;
+            poBox[houseNumber][6] = time;
         }
 
-            return parcelCost;
+        return parcelCost;
     }
+
+
 
     public int getCountdownTime() {
         if(countdownTime == 0){
-            String dayLeft = "Expired";
+            String dayLeft = "EXPIRED";
             poBox[houseNumber][4] = dayLeft;
         }
         else if(countdownTime == 1){
-            String dayLeft = "1 day left";
+            String dayLeft = "1 DAY LEFT";
             poBox[houseNumber][4] = dayLeft;
         }
         else if(countdownTime == 2){
-            String dayLeft = "2 day left";
+            String dayLeft = "2 DAYS LEFT";
             poBox[houseNumber][4] = dayLeft;
 
         } 
@@ -67,17 +72,17 @@ public class Parcel {
         if (daysDifference > 2) {
             countdownTime = 0;
             String parcelStatus = "EXPIRED";
-             poBox[houseNumber][5] = parcelStatus;
+            poBox[houseNumber][6] = parcelStatus;
             return true;
         } else if (daysDifference == 2) {
             countdownTime = 1;
             String parcelStatus = "NOT EXPIRED";
-             poBox[houseNumber][5] = parcelStatus;
+             poBox[houseNumber][6] = parcelStatus;
             return false;
         } else {
             countdownTime = 2;
             String parcelStatus = "NOT EXPIRED";
-             poBox[houseNumber][5] = parcelStatus;
+             poBox[houseNumber][6] = parcelStatus;
             return false;
         }
     }
