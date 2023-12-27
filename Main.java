@@ -9,8 +9,8 @@ public class Main {
         Scanner in = new Scanner(System.in); 
         
         // Variables to store information about agents, properties, and customers
-        String[] recipient = new String[31];          //1D array to store agents name
-        String[] houseNumber = new String[30];       //1D array to store customers name
+        String[] recipient = new String[31];          //1D array to store recipient name
+        String[] houseNumber = new String[30];       //1D array to store houseNumber name
         String[][] poBox = new String[31][7]; // 2D array to store properties, 
                                                    //each row representing a property and each column representing a property detail 
         int count = 0 ;
@@ -35,8 +35,20 @@ public class Main {
             System.out.println("1. Check Inbox");
             System.out.println("2. View/Print Your POBox");
             System.out.println("3. Exit");
-            int choice = in.nextInt();
+    
 
+           int choice = 0;
+
+   /*  while (true) {
+        if (in.hasNextInt()) {
+        choice = in.nextInt();
+        break;
+        } else {
+        System.out.println("Invalid input. Please enter a valid integer.");
+        in.next(); // consume the invalid input
+    }*/
+  
+            System.out.print("Enter your choice: ");
             switch (choice) {
                 case 1:{//check inbox
                     {
@@ -130,7 +142,8 @@ public class Main {
         boolean isAuthenticated = false;
 
         if (isAuthenticated) {
-            
+        
+        
     
         // Main menu for parcel management system
         while (isAuthenticated) {
@@ -189,5 +202,8 @@ public class Main {
         
             // Close the scanner
             in.close();
-        }
+       }
     }
+
+
+
