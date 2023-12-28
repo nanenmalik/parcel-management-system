@@ -2,14 +2,14 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Parcel {
-    public String recipient;
-    public int houseNumber;
-    public LocalDate storedDate;
+    private String[] recipient ;
+    private int houseNumber;
+    private LocalDate storedDate;
     public int parcelCost;
-    public int countdownTime;
-    public String[][] poBox = new String[30][5];
+    private int countdownTime;
+    private String[][] poBox;
 
-    public Parcel(String recipient, int houseNumber, String content) {
+    public Parcel(String[] recipient, int houseNumber, String[][] poBox) {
         this.recipient = recipient;
         this.houseNumber = houseNumber;
         this.storedDate = LocalDate.now();
@@ -17,11 +17,14 @@ public class Parcel {
         this.countdownTime = 0;
     }
 
+    public Parcel(Object recipient2, Object houseNumber2, Object poBox2) {
+    }
+
     public int getHouseNumber() { //getter
         return houseNumber;
     }
 
-    public String getRecipient() { 
+    public String[] getRecipient() { 
         return recipient;
     }
 
@@ -36,11 +39,13 @@ public class Parcel {
 
         if(days == 0){
             String time = "Extend";
-            poBox[houseNumber][3] = time;
+            poBox[houseNumber][6] = time;
         }
 
-            return parcelCost;
+        return parcelCost;
     }
+
+
 
     public int getCountdownTime() {
         if(countdownTime == 0){
@@ -67,17 +72,17 @@ public class Parcel {
         if (daysDifference > 2) {
             countdownTime = 0;
             String parcelStatus = "EXPIRED";
-             poBox[houseNumber][5] = parcelStatus;
+            poBox[houseNumber][6] = parcelStatus;
             return true;
         } else if (daysDifference == 2) {
             countdownTime = 1;
             String parcelStatus = "NOT EXPIRED";
-             poBox[houseNumber][5] = parcelStatus;
+             poBox[houseNumber][6] = parcelStatus;
             return false;
         } else {
             countdownTime = 2;
             String parcelStatus = "NOT EXPIRED";
-             poBox[houseNumber][5] = parcelStatus;
+             poBox[houseNumber][6] = parcelStatus;
             return false;
         }
     }
@@ -87,7 +92,7 @@ public class Parcel {
         storedDate = LocalDate.now();
     }
 
-    public int getParcelCost() { 
+    public double getParcelCost() { 
         return parcelCost;
     }
 
@@ -98,5 +103,5 @@ public class Parcel {
         parcelInfo = "Expired " + parcelInfo;
         }
          return parcelInfo;
-    }*/
+    }*/
 }
