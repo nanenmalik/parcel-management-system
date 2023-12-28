@@ -9,7 +9,6 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-
     private final static int SLOT = 30;
     private final static int SIZE = 5;
     private static List<ParcelStorage> parcelStorage = new ArrayList<>(SLOT);
@@ -24,6 +23,7 @@ public class Main {
 
         do {
             printWelcomeMessage();
+            System.out.println("\nPlease enter a number: ");
             select = Integer.parseInt(scanner.nextLine());
             if (select == 1) {
                 menu1();
@@ -106,7 +106,7 @@ public class Main {
     }
     // Prints the welcome message and menu options.
     public static void printWelcomeMessage() {
-        System.out.println("Welcome to the Lazada Parcel service center ! ");
+        System.out.println("********Welcome to the Lazada Parcel service center ! ********\n");
         System.out.println("1. Collect ");
         System.out.println("2. Drop Off");
         System.out.println("3. Exit");
