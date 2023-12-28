@@ -68,4 +68,6 @@ This code represents a parcel service centre application with basic functionalit
 The Parcel class defines the attributes and behavior of individual parcels, including their username, collection code, dates, and sender details. Meanwhile, the ParcelStorage class manages storage units, associating each with a username and maintaining a list of stored parcels.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
+UML Class Diagram
+
 ![Screenshot 2023-12-28 112805](https://github.com/nanenmalik/parcel-management-system/assets/147983899/f12ea0e6-2b61-4b4c-ad8b-363ff10e35ad)
