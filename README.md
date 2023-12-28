@@ -36,7 +36,7 @@ The assigned tasks for each group member:-
 6. writeFile() (Nabila)
    - Writes the contents of the parcel storage to the file.
 
-7. resetArray()* (Nabila)
+7. resetArray() (Nabila)
    - Resets the parcel storage array.
 
 ### Parcel Class (Parcel): (Nasreen)
