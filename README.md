@@ -1,4 +1,4 @@
-# PO-box-system
+# parcel-management-system
 
 case study repository
 
@@ -58,7 +58,10 @@ The assigned tasks for each group member:-
 
 3. Accessor Methods and Mutator Methods:
    - Various methods to get and set the values of username and parcelList in the parcel storage.
+  
+### Make  UML class  diagram (Nasreen)
 
+### Update README file (Nasreen)
  -----------------------------------------------------------------------------------------------------------------------------------------------------------    
 
  Brief Description of the case study
