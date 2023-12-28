@@ -1,209 +1,175 @@
+
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-/**
- */
+import java.util.StringTokenizer;
+
 public class Main {
+
+
+    private final static int SLOT = 30;
+    private final static int SIZE = 5;
+    private static List<ParcelStorage> parcelStorage = new ArrayList<>(SLOT);
+    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    private static Scanner scanner = new Scanner(System.in);
+    
+    // Presents a menu to the user and calls specific methods based on the user's choice.
     public static void main(String[] args) throws IOException {
+       
+        int select = 0;
 
-        //Scanner object to read input from the user 
-        Scanner in = new Scanner(System.in); 
-        
-        // Variables to store information about agents, properties, and customers
-        String[] recipient = new String[31];          //1D array to store recipient name
-        String[] houseNumber = new String[30];       //1D array to store houseNumber name
-        String[][] poBox = new String[31][7]; // 2D array to store properties, 
-                                                   //each row representing a property and each column representing a property detail 
-        int count = 0 ;
-        int row = 0 ;
-        char answer;
-        
-        
-        //boolean
-
-        // load data from file if it already exists
-        ParcelStorage.loadDataFromFile(recipient, houseNumber, poBox);         //call Parcel Storage file
-        System.out.println("Welcome to Property Management\n");
-
-        String username = ParcelStorage.userAuthentication( recipient, houseNumber, poBox);
-        
-        // Print the result
-        System.out.println("Hello " + username + (". Hope you are in a good Day!!"));
-
-    do{
-            System.out.print("----- Welcome to PO Box -----");
-
-            System.out.println("1. Check Inbox");
-            System.out.println("2. View/Print Your POBox");
-            System.out.println("3. Exit");
-    
-
-           int choice = 0;
-
-   /*  while (true) {
-        if (in.hasNextInt()) {
-        choice = in.nextInt();
-        break;
-        } else {
-        System.out.println("Invalid input. Please enter a valid integer.");
-        in.next(); // consume the invalid input
-    }*/
-  
-            System.out.print("Enter your choice: ");
-            switch (choice) {
-                case 1:{//check inbox
-                    {
-                        row = ParcelStorage.findUserRowIndex( poBox, username);
-                        
-                        Parcel parcel = new Parcel(recipient, houseNumber, poBox); // Create an instance of the Parcel class
-                        if (parcel.isExpired()) {
-                            System.out.println("Your Parcel has EXPIRED.");
-                            System.out.println("Please contact your sender again to retrieve your parcel.");
-                        } else {
-                            System.out.println("Your parcel has " + parcel.getCountdownTime() + " days left.");
-                            System.out.println("Do you wish to extend time for your parcel package? Enter days: ");
-                            int daysToExtend = in.nextInt();
-                            
-                            int parcelCost = parcel.handleExtendTime(daysToExtend);
-                            System.out.println("Parcel to extend cost is RM" + parcelCost);
-                            System.out.println("Your time has been extended to " + parcel.getCountdownTime() + " days.");
-                        }
-                        // if( poBox[houseNumbers][5] == "EXPIRED"){
-                        //     System.out.println("Your Parcel has EXPIRED.");
-                        //     System.out.println("Please contact your sender again to retrieve your parcel.");
-                        // }
-
-                        // else if( poBox[houseNumbers][5] == "NONE"){
-                        //     System.out.println("Your parcel are" + poBox[houseNumbers][4]);
-                    //------------------------------------------------------------------------
-                        //     do {
-                        //         int day = 0;
-                        //         int timeExtended = 0;
-                    
-                        //         System.out.println("Do you wish to extend time for your parcel package?");
-                                
-                        //         // Input validation
-                        //         class Parcel {
-                        //             private int costPerDay;
-        
-                        //             public Parcel() {
-                        //                 // Initialize the cost per day
-                        //                 costPerDay = 10;
-                        //             }
-        
-                        //             public int handleExtendTime(int day) {
-                        //                 return costPerDay * day;
-                        //             }
-                        //         }
-                    //--------------------------------------------------------------------------
-                        // Parcel parcel = new Parcel(); // Create an instance of the Parcel class
-                        // parcelCost = parcel.handleExtendTime(day);
-                        // System.out.println("Parcel to extend cost is RM" + parcelCost);
-                        // System.out.println("Your time has been extended to " + timeExtended);
-        
-                    }
-                        break;
-                    } 
-                    
-                    
-                case 2:
-                    { //view data
-                        //row??
-                        row = ParcelStorage.findUserRowIndex( poBox, username);
-
-                            if (row >= 0) {
-                                ParcelStorage.printColumnsForRow(poBox, row);
-                            } else {
-                                System.out.println("User not found.");
-                            }
-                    
-                    break;
-                    }
-        
-                case 3:
-                        //exit the program
-                        return;
-                    
-                default:
-                        System.out.println();        
-                        System.out.println("Invalid choice.");
-                        System.out.println();
-                  }
-
-            System.out.println("Do you want to continue?(Y/N): ");
-            answer = ' ';
-                if( answer == 'N'){
-                    break;
-                }
-                answer = in.next().charAt(0);
-            } while (answer == 'Y' || answer == 'y');
-         
-    
-        //-------------------------------------------------------------------------------------------------------
-        boolean isAuthenticated = false;
-
-        if (isAuthenticated) {
-        
-        
-    
-        // Main menu for parcel management system
-        while (isAuthenticated) {
-
-            count = 0;
-
-            System.out.println("1. Insert data");
-            System.out.println("2. View/Print data");
-            System.out.println("3. Update data");
-            System.out.println("4. Exit");
-            System.out.print("Enter your choice: ");
-            int option = in.nextInt();
-
-            switch (option) {
-                case 1:
-                    //insert data
-                    if(count < 10) {
-                        // increment the count to insert data to the next index
-                        count = ParcelStorage.insertingData(recipient, houseNumber, poBox, count);
-                        //save the data to the file
-                        ParcelStorage.savingDataToFile(recipient, houseNumber, poBox);
-                    } 
-                    
-                    else
-                        System.out.println("List is property is maximum"); 
-                        //User cannot add more data if list of rows is already 10
-                    
-                    break;
-                    
-                case 2:
-                    //view data
-                    ParcelStorage.viewPropertyData(recipient, houseNumber, poBox);
-                    break;
-                    
-                case 3:
-                    //update data
-                    ParcelStorage.updatePropertyData(recipient, houseNumber, poBox);
-                    //save the updated data to file
-                    ParcelStorage.savingDataToFile(recipient, houseNumber, poBox);
-                    break;
-                    
-                    case 4:
-                        //exit the program
-                        return;
-                    
-                    default:
-                        System.out.println();        
-                        System.out.println("Invalid choice.");
-                        System.out.println();
-                  }                 
-                }
+        do {
+            printWelcomeMessage();
+            select = Integer.parseInt(scanner.nextLine());
+            if (select == 1) {
+                menu1();
+            } else if (select == 2) {
+                menu2();
+            } else if (select == 3) {
+                System.out.println("Bye bye");
             }
-            else {
-                System.out.println("Authentication failed. Exiting the program.");
+
+        } while (select != 3);
+
+    }
+    // Handles the collection of parcels. Reads user input for username and collection code, searches for the parcel, and removes it if found.
+    public static void menu1() throws IOException {
+        readFile();
+        System.out.println("Enter your username: ");
+        String username = scanner.nextLine();
+
+        System.out.println("Enter your collection code: ");
+        String code = scanner.nextLine();
+
+
+        for (ParcelStorage ps : parcelStorage) {
+            for (int i = 0 ; i < ps.getParcelList().size() ; i ++) {
+
+                Parcel parcel = ps.getParcelList().get(i);
+                if (parcel != null) {
+                    if (username.equals(parcel.getusername()) && code.equals(parcel.getCode())) {
+                        System.out.println("Parcel found !!! ");
+                        System.out.println("Please collect your parcel ");
+
+                        ps.getParcelList().remove(i);
+                        writeFile();
+                        return;
+                    }
+                }
+
             }
-        
-            // Close the scanner
-            in.close();
-       }
+        }
+        System.out.println("Invalid code !");
+
+    }
+    // Handles the drop off of parcels. Reads user input for username, collection code, and sender details, and stores the parcel if there is space.
+    public static void menu2() throws IOException {
+
+        readFile();
+
+        System.out.println("Enter the receiver username: ");
+        String username = scanner.nextLine();
+        System.out.println("Enter the receiver collection code: ");
+        String code = scanner.nextLine();
+        System.out.println("Enter the sender detail: ");
+        String sender = scanner.nextLine();
+
+
+        for (ParcelStorage ps : parcelStorage) {
+            if (ps.getusername() == null) {
+                ps.setusername(username);
+                Parcel parcel = new Parcel(username, code, sender);
+                ps.getParcelList().add(parcel);
+                System.out.println("Parcel stored ");
+                writeFile();
+                return;
+            } else if (ps.getusername().equals(username)) {
+                if (ps.getParcelList().size() < SIZE) {
+                    Parcel parcel = new Parcel(username, code, sender);
+                    ps.getParcelList().add(parcel);
+                    System.out.println("Parcel stored ");
+                    writeFile();
+                    return;
+
+                }
+                break;
+            }
+        }
+
+        System.out.println("All slot are full! ");
+
+
+    }
+    // Prints the welcome message and menu options.
+    public static void printWelcomeMessage() {
+        System.out.println("Welcome to the Lazada Parcel service center ! ");
+        System.out.println("1. Collect ");
+        System.out.println("2. Drop Off");
+        System.out.println("3. Exit");
+    }
+    // Reads the contents of the file and stores them in the parcel storage array.
+    public static void readFile() throws IOException {
+        File file = new File("parcel2.txt");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        resetArray();
+
+        // read line by line
+        while ((line = br.readLine()) != null) {
+            //seperate by the delimeter
+            StringTokenizer st = new StringTokenizer(line, "|");
+            String username = st.nextToken();
+
+            String code = st.nextToken();
+            LocalDate storedDate = LocalDate.parse(st.nextToken(), formatter);
+            LocalDate expiredDate = LocalDate.parse(st.nextToken(), formatter);
+            String sender = st.nextToken();
+
+            if (expiredDate.isBefore(LocalDate.now())) {
+                System.out.println("Parcel code " + code + " is expired, returning to original sender " + sender);
+                continue;
+            }
+
+            Parcel p = new Parcel(username, code, storedDate, expiredDate, sender);
+
+            for (ParcelStorage ps : parcelStorage) {
+                if (ps.getusername() == null || !ps.getusername().equals(username)) {
+                    ps.setusername(username);
+                }
+                ps.getParcelList().add(p);
+                break;
+            }
+
+
+        }
+        fr.close();
+    }
+    // Writes the contents of the parcel storage to the file.
+    public static void writeFile() throws IOException {
+        File file = new File("parcel2.txt");
+        FileWriter fr = new FileWriter(file);
+
+        for (ParcelStorage ps : parcelStorage) {
+
+            for (Parcel parcel : ps.getParcelList()) {
+                fr.write(parcel.getusername() + "|" + parcel.getCode() + "|" +
+                        parcel.getStoredDate() + "|" + parcel.getExpiredDate() + "|" + parcel.getSender() + "\n");
+
+            }
+        }
+        fr.close();
     }
 
-
-
+    // Resets the parcel storage array.
+    public static void resetArray(){
+        parcelStorage = new ArrayList<>(SLOT);
+        for (int i = 0; i < SLOT; i++) {
+            parcelStorage.add(new ParcelStorage());
+        }
+    }
+}
