@@ -56,6 +56,8 @@ The assigned tasks for each group member:-
 3. Accessor Methods and Mutator Methods:
    - Various methods to get and set the values of houseNumber and parcelList in the parcel storage.
 
+     
+
  Brief Description of the case study
 
 This code represents a parcel service centre application with basic functionality for storing and retrieving parcels. The program, initiated by the Main class, presents users with two options: collecting a parcel or dropping off a new one. It employs file operations to maintain parcel information persistently in the "parcel2.txt" file.
