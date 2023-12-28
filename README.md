@@ -17,3 +17,4 @@ The assigned tasks for each group member:-
 
 
 
+![Screenshot 2023-12-28 112805](https://github.com/nanenmalik/parcel-management-system/assets/147983899/f12ea0e6-2b61-4b4c-ad8b-363ff10e35ad)
