@@ -76,5 +76,13 @@ UML Class Diagram
 ![Screenshot 2023-12-28 112805](https://github.com/nanenmalik/parcel-management-system/assets/147983899/f12ea0e6-2b61-4b4c-ad8b-363ff10e35ad)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+RESULT
+![Screenshot 2024-01-01 131654](https://github.com/nanenmalik/parcel-management-system/assets/147983899/fc8528f0-9cb8-48a5-b85d-1466a9e14f2f)
+![Screenshot 2024-01-01 131723](https://github.com/nanenmalik/parcel-management-system/assets/147983899/c6849405-1fc3-46e3-a5fa-440cbcc7f15f)
+![Screenshot 2024-01-01 131802](https://github.com/nanenmalik/parcel-management-system/assets/147983899/21d50feb-36fa-43da-b4a1-c9701a4e1676)
+![Screenshot 2024-01-01 131836](https://github.com/nanenmalik/parcel-management-system/assets/147983899/601ea6e6-0f43-4b0f-9610-b9b41e8162bf)
+![Screenshot 2024-01-01 131901](https://github.com/nanenmalik/parcel-management-system/assets/147983899/59c0f953-3aa0-4a17-8cfb-8b53edcfeb27)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 REFERENCES
 - Liang, D. (2020). Introduction to Java Programming and Data Structures. 12th Edition. Pearson Education, Inc.
